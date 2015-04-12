@@ -1,4 +1,4 @@
-<?php namespace Ueditor;
+<?php namespace Leona;
 
 use Illuminate\Support\ServiceProvider;
 

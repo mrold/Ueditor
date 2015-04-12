@@ -1,4 +1,4 @@
-<?php namespace Ueditor;
+<?php namespace Leona;
 
 class Ueditor {
 

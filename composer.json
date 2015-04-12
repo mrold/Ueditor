@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Leona\\Ueditor\\": "src"
+            "Leona\\": "src/Ueditor"
         }
     }
 }
