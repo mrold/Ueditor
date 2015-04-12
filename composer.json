@@ -1,0 +1,20 @@
+{
+    "name": "mr-old/ueditor",
+    "description": "A Ueditor package for Laravel.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mr-Old",
+            "email": "lostphper@sina.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leona\\Ueditor\\": "src"
+        }
+    }
+}
