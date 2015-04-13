@@ -265,7 +265,7 @@ class Ueditor {
         $config = array(
             "pathFormat" => $this->configs['scrawlPathFormat'],
             "maxSize" => $this->configs['scrawlMaxSize'],
-            "allowFiles" => $this->configs['scrawlAllowFiles'],
+//            "allowFiles" => $this->configs['scrawlAllowFiles'],  // 缺少配置项
             "oriName" => "scrawl.png"
         );
         $fieldName = $this->configs['scrawlFieldName'];
@@ -373,14 +373,18 @@ class Ueditor {
             return;
         }
         //获取请求头并检测死链
-        $heads = get_headers($imgUrl);
+        $heads = get_headers($imgUrl, 1);
+        if (!$heads) {
+            $this->stateInfo = $this->getStateInfo('ERROR_DEAD_LINK');
+            return;
+        }
         if (!(stristr($heads[0], "200") && stristr($heads[0], "OK"))) {
             $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
             return;
         }
         //格式验证(扩展名验证和Content-Type验证)
         $fileType = strtolower(strrchr($imgUrl, '.'));
-        if (!in_array($fileType, $this->actionConfig['allowFiles']) || stristr($heads['Content-Type'], "image")) {
+        if (!in_array($fileType, $this->actionConfig['allowFiles']) || false === stripos($heads['Content-Type'], "image")) {
             $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
             return;
         }
@@ -462,9 +466,10 @@ class Ueditor {
             $this->result = array(
                 "state" => "no match file",
                 "list" => array(),
-                "start" => $start,
+                "start" => intval($start),
                 "total" => count($files)
             );
+            return;
         }
 
         /* 获取指定范围的列表 */
@@ -639,7 +644,7 @@ class Ueditor {
             if ($file != '.' && $file != '..') {
                 $file = $path . $file;
                 if (!is_dir($file)) {  //如果是文件
-                    $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                    $extension = '.'.strtolower(pathinfo($file, PATHINFO_EXTENSION));
                     if (in_array($extension, $allow_files)) {
                         $file = trim($file, './');
                         $files[] = array(
