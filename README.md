@@ -52,8 +52,14 @@ php artisan vendor:publish
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     var serverUrl = "{{ url('test') }}";
+    var csrf_token = "{{ csrf_token() }}";
     var ue = UE.getEditor('container', {
         serverUrl: serverUrl
+    });
+    ue.ready(function () {
+        ue.execCommand('serverparam', {
+            "_token": csrf_token
+        });
     });
 </script>
 ```
