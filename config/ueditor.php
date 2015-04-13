@@ -1,7 +1,6 @@
 <?php
 return [
     /* 前后端通信相关的配置,注释只允许使用多行方式 */
-    'rootPath' => public_path(), // Ueditor 文件上传根目录。
     /* 上传图片配置项 */
     "imageActionName" => "uploadimage", /* 执行上传图片的action名称 */
     "imageFieldName" => "upfile", /* 提交的图片表单名称 */

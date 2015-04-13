@@ -257,6 +257,9 @@ class Ueditor {
         $this->result = $this->getFileInfo();
     }
 
+    /**
+     * base64上传
+     */
     private function upBase64()
     {
         $config = array(
@@ -312,6 +315,9 @@ class Ueditor {
         $this->result = $this->getFileInfo();
     }
 
+    /**
+     * 远程抓取
+     */
     private function crawler()
     {
         /* 上传配置 */
@@ -352,6 +358,10 @@ class Ueditor {
         ];
     }
 
+    /**
+     * 抓取给定的url上的文件
+     * @param string $url 目标url
+     */
     private function saveRemote($url)
     {
         $imgUrl = htmlspecialchars($url);
@@ -419,6 +429,10 @@ class Ueditor {
         }
     }
 
+    /**
+     * 迭代遍历目录下文件
+     * @param string $action
+     */
     private function listFiles($action)
     {
         switch ($action) {
@@ -441,7 +455,7 @@ class Ueditor {
         $start = isset($_GET['start']) ? htmlspecialchars($_GET['start']) : 0;
         $end = intval($start) + intval($size);
 
-        $directory = $this->configs['rootPath'].(substr($path, 0, 1) == "/" ? "":"/").$path;
+        $directory = $_SERVER['DOCUMENT_ROOT'].(substr($path, 0, 1) == "/" ? "":"/").$path;
         $files = $this->getFileList($directory, $allowFiles);
 
         if (!count($files)) {
@@ -629,7 +643,7 @@ class Ueditor {
                     if (in_array($extension, $allow_files)) {
                         $file = trim($file, './');
                         $files[] = array(
-                            'url'   => asset(substr($file, strlen(public_path()))),
+                            'url'   => asset(substr($file, strlen($_SERVER['DOCUMENT_ROOT']))),
                             'mtime' => filemtime($file),
                         );
                     }
@@ -641,6 +655,10 @@ class Ueditor {
         return $files;
     }
 
+    /**
+     * Ueditor 后台响应
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function response()
     {
         $result = isset($this->result) ? $this->result : $this->getFileInfo();
@@ -660,6 +678,10 @@ class Ueditor {
         }
     }
 
+    /**
+     * 获取上传成功的文件信息数组
+     * @return mixed
+     */
     public function getUploadedFiles()
     {
         return $this->getUploadedFiles();
