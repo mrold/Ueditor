@@ -33,6 +33,8 @@ return [
 php artisan vendor:publish
 ```
 配置文件名为：`ueditor.php`。配置项与官方原版一致，只是转换成php格式。具体如何配置请参考官方文档：http://fex.baidu.com/ueditor/
+>##### 提醒
+>为了便于查看原版的php代码，默认保留了php文件夹下的所有文件。基于安全考虑，实际部署项目时请自行删除吧。
 
 第三步：使用
 -----------------
