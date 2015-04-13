@@ -36,7 +36,7 @@ php artisan vendor:publish
 
 第三步：使用
 -----------------
-#### 前段配置不再详细说明。简要贴出代码：
+#### 前端配置不再详细说明。简要贴出代码：
 ```html
 <!-- 加载编辑器的容器 -->
 <script id="container" name="content" type="text/plain">
