@@ -28,7 +28,7 @@ return [
 ```
 第二步：配置
 -------------------------
-#### 运行Laravel的artisan命令,把扩展包中的配置文件和前段资源文件复制到项目中：
+#### 运行Laravel的artisan命令,把扩展包中的配置文件和前端资源文件复制到项目中：
 ```
 php artisan vendor:publish
 ```
