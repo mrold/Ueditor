@@ -7,7 +7,7 @@ Ueditor for Laravel。这是一个在laravel5上使用的Ueditor扩展包。
 {
     "require": {
         "laravel/framework": "5.*",
-        "mr-old/ueditor": "~1.0"
+        "mrold/ueditor": "~1.0"
     }
 }
 ```
